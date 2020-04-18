@@ -20,7 +20,7 @@ export class Tab1Page implements OnInit {
   ngOnInit(): void {
     this.moviesService.getMoviesInTheatre()
     .subscribe(resp => {
-      console.log(resp);
+      // console.log(resp);
       this.latestMovies = resp.results;
     });
   }

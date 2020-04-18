@@ -17,7 +17,7 @@ export class MoviesService {
   private executeQuery<t>(query: string) {
     query = URL + query;
     query += `&api_key=${API_KEY}&language=en&include_image_lenguage=en`;
-    console.log(query);
+    // console.log(query);
     return this.http.get<ResponseMovieDB>(query);
   }
 

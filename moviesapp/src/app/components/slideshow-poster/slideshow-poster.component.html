@@ -1,0 +1,8 @@
+<ion-slides [options]="slidesOpts">
+    <ion-slide *ngFor="let latestMovie of moviesFromFather">
+        <ion-card>
+            <!-- we put 'images' beacuse thats why named in pipe -->
+            <img class="poster" [src]="latestMovie.poster_path | images" alt="">
+        </ion-card>
+    </ion-slide>
+</ion-slides>
