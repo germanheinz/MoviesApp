@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ResponseMovieDB } from '../interface/interface';
+import { ResponseMovieDB, Movie } from '../interface/interface';
+import { environment } from '../../environments/environment.prod';
+
+const URL = environment.url;
+const URL_IMG = environment.imgUrl;
+const API_KEY = environment.apiKey;
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +14,26 @@ export class MoviesService {
 
   constructor(private http: HttpClient) { }
 
-  getMoviesInTheatre(){
-    return this.http.get<ResponseMovieDB>(`https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2020-01-01&primary_release_date.lte=2020-01-03&api_key=81f888823f079b9941a4534f90d59f34&language=en`);
+  private executeQuery<t>(query: string) {
+    query = URL + query;
+    query += `&api_key=${API_KEY}&language=en&include_image_lenguage=en`;
+    console.log(query);
+    return this.http.get<ResponseMovieDB>(query);
+  }
+
+  getMoviesInTheatre() {
+    const today = new Date();
+    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+    const mes = today.getMonth();
+
+    let mesString;
+    if (mes < 10) {
+      mesString = '0' + mes;
+    } else {
+      mesString = mes;
+    }
+    const startDate = `${today.getFullYear()}-${mesString}-01`;
+    const endDate = `${today.getFullYear()}-${mesString}-${lastDay}`;
+    return this.executeQuery<ResponseMovieDB>(`/discover/movie?primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}`);
   }
 }

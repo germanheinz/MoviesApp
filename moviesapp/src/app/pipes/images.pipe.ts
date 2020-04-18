@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { environment } from '../../environments/environment';
 
-const url = 'https://image.tmdb.org/t/p';
+const url = environment.imgUrl;
 
 @Pipe({
   name: 'images'
