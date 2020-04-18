@@ -36,4 +36,8 @@ export class MoviesService {
     const endDate = `${today.getFullYear()}-${mesString}-${lastDay}`;
     return this.executeQuery<ResponseMovieDB>(`/discover/movie?primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}`);
   }
+  getPopulate() {
+    const query = `/discover/movie?sort_by=popularity.desc`;
+    return this.executeQuery<ResponseMovieDB>(query);
+  }
 }

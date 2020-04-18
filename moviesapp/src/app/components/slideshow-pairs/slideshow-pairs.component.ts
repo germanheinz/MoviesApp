@@ -2,20 +2,19 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from '../../interface/interface';
 
 @Component({
-  selector: 'app-slideshow-backdrop',
-  templateUrl: './slideshow-backdrop.component.html',
-  styleUrls: ['./slideshow-backdrop.component.scss'],
+  selector: 'app-slideshow-pairs',
+  templateUrl: './slideshow-pairs.component.html',
+  styleUrls: ['./slideshow-pairs.component.scss'],
 })
-export class SlideshowBackdropComponent implements OnInit {
+export class SlideshowPairsComponent implements OnInit {
 
   @Input() moviesFromFather: Movie[] = [];
 
   slidesOpts = {
-    slidesPerView: 1.1,
+    slidesPerView: 3.3,
     freeMode: true,
-    spaceBetween: -20
+    spaceBetween: -30
   };
-
   constructor() { }
 
   ngOnInit() {}
