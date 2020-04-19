@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from '../../interface/interface';
+import { ModalController } from '@ionic/angular';
+import { DetailsComponent } from '../details/details.component';
 
 @Component({
   selector: 'app-slideshow-poster',
@@ -16,8 +18,16 @@ export class SlideshowPosterComponent implements OnInit {
     spaceBetween: -20
   };
 
-  constructor() { }
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {}
-
+  async details(id: string) {
+    const modal = await this.modalController.create({
+      component: DetailsComponent,
+      componentProps: {
+        id
+      }
+    });
+    return await modal.present();
+  }
 }

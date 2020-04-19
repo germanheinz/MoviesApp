@@ -1,6 +1,6 @@
 <ion-slides [options]="slidesOpts">
     <ion-slide *ngFor="let latestMovie of moviesFromFather">
-        <ion-card>
+        <ion-card (click)="details(latestMovie.id)">
             <!-- we put 'images' beacuse thats why named in pipe -->
             <img class="poster" [src]="latestMovie.poster_path | images" alt="">
         </ion-card>

@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Movie } from '../../interface/interface';
 
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, ModalController } from '@ionic/angular';
+import { DetailsComponent } from '../details/details.component';
 
 
 @Component({
@@ -19,13 +20,22 @@ export class SlideshowPairsComponent implements OnInit {
     freeMode: true,
     spaceBetween: -30
   };
-  constructor() { }
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {}
 
   onClick() {
     console.log('click');
     this.loadMore.emit();
+  }
+  async details(id: string) {
+    const modal = await this.modalController.create({
+      component: DetailsComponent,
+      componentProps: {
+        id
+      }
+    });
+    return await modal.present();
   }
   }
 
