@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ResponseMovieDB, Movie, MovieDetail, Crew, RespuestaCredits } from '../interface/interface';
+import { ResponseMovieDB, Movie, MovieDetail, ResponseCredits } from '../interface/interface';
 import { environment } from '../../environments/environment.prod';
 
 const URL = environment.url;
@@ -20,7 +20,7 @@ export class MoviesService {
     query = URL + query;
     query += `&api_key=${API_KEY}&language=en&include_image_lenguage=en`;
     // console.log(query);
-    return this.http.get<ResponseMovieDB>(query);
+    return this.http.get<t>(query);
   }
 
   getMoviesInTheatre() {
@@ -47,6 +47,6 @@ export class MoviesService {
     return this.executeQuery<MovieDetail>(`/movie/${id}?a=1`);
   }
   getActorDetail(id: string){
-    return this.executeQuery<RespuestaCredits>(`/movie/${id}/credits?a=1`);
+    return this.executeQuery<ResponseCredits>(`/movie/${id}/credits?a=1`);
   }
 }
