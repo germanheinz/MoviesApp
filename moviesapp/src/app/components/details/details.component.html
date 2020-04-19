@@ -12,12 +12,12 @@
             </ion-col>
             <ion-col>
                 <ion-item>
-                    <ion-icon slot="start" name="thumbs-up" color="primary"></ion-icon>
+                    <ion-icon slot="start" name="medal-outline" color="primary"></ion-icon>
                     <ion-label>Rating</ion-label>
                     <ion-note slot="end" color="primary">{{movieDetail.vote_average}}</ion-note>
                 </ion-item>
                 <ion-item>
-                    <ion-icon slot="start" name="contacts" color="primary"></ion-icon>
+                    <ion-icon slot="start" name="chatbubble-outline" color="primary"></ion-icon>
                     <ion-label>Voutes</ion-label>
                     <ion-note slot="end" color="primary">{{movieDetail.vote_count}}</ion-note>
                 </ion-item>
@@ -27,8 +27,49 @@
     <ion-grid fixed>
         <ion-row>
             <ion-col size=12>
-                <ion-label>{{movieDetail.overview}}</ion-label>
+                <ion-label>{{movieDetail.overview | slice: 0: hide}}...</ion-label>
+                <ion-label color="primary" (click)="hide = 5000" *ngIf="hide !== 5000">read more</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size=12>
+                <ion-chip *ngFor="let genre of movieDetail.genres" color="primary">
+                    <ion-label>{{genre.name}}</ion-label>
+                </ion-chip>
             </ion-col>
         </ion-row>
     </ion-grid>
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col>
+                <ion-label>Actors</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-slides [options]="slideOptActors">
+        <ion-slide *ngFor="let actor of actors">
+            <ion-card class="card-actor">
+                <img *ngIf="!actor.profile_path" src="assets/no-avatar.jpg" alt="">
+                <img *ngIf="actor.profile_path" [src]="actor.profile_path | images" alt="">
+                <ion-label class="actor-name">{{actor.name}}</ion-label>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+
 </ion-content>
+<ion-footer no-border>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="getBack()">
+                <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+                <ion-label>Back</ion-label>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="favourite()">
+                <ion-label>Favourite</ion-label>
+                <ion-icon slot="end" name="star-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

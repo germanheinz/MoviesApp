@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
-import { MovieDetail } from '../../interface/interface';
+import { MovieDetail, Cast } from '../../interface/interface';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-details',
@@ -12,8 +13,16 @@ export class DetailsComponent implements OnInit {
   @Input() id;
   // I assign this variable at empty object for avoid issues
   movieDetail: MovieDetail = {};
+  actors: Cast [] = [];
+  hide: 50;
 
-  constructor(private moviesService: MoviesService) { }
+  slideOptActors = {
+    slidesPerView: 3.3,
+    freeMode: true,
+    spacebetween: -5
+  }
+
+  constructor(private moviesService: MoviesService, private modalController: ModalController) { }
 
   ngOnInit() {
     console.log('id' + this.id);
@@ -26,7 +35,11 @@ export class DetailsComponent implements OnInit {
     this.moviesService.getActorDetail(this.id)
     .subscribe(resp => {
       console.log(resp);
+      this.actors = resp.cast;
     });
+  }
+  getBack(){
+    this.modalController.dismiss();
   }
 
 
