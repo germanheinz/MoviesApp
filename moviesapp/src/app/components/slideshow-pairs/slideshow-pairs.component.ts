@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Movie } from '../../interface/interface';
+
+import { IonSlides } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-slideshow-pairs',
@@ -9,7 +12,8 @@ import { Movie } from '../../interface/interface';
 export class SlideshowPairsComponent implements OnInit {
 
   @Input() moviesFromFather: Movie[] = [];
-
+  
+  @Output() loadMore = new EventEmitter<any>();
   slidesOpts = {
     slidesPerView: 3.3,
     freeMode: true,
@@ -19,4 +23,9 @@ export class SlideshowPairsComponent implements OnInit {
 
   ngOnInit() {}
 
-}
+  onClick() {
+    console.log('click');
+    this.loadMore.emit();
+  }
+  }
+

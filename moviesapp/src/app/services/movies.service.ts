@@ -12,6 +12,8 @@ const API_KEY = environment.apiKey;
 })
 export class MoviesService {
 
+  private popularPage = 0;
+
   constructor(private http: HttpClient) { }
 
   private executeQuery<t>(query: string) {
@@ -36,8 +38,9 @@ export class MoviesService {
     const endDate = `${today.getFullYear()}-${mesString}-${lastDay}`;
     return this.executeQuery<ResponseMovieDB>(`/discover/movie?primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}`);
   }
-  getPopulate() {
-    const query = `/discover/movie?sort_by=popularity.desc`;
+  getPopularMovies() {
+    this.popularPage++;
+    const query = `/discover/movie?sort_by=popularity.desc&page=${this.popularPage}`;
     return this.executeQuery<ResponseMovieDB>(query);
   }
 }

@@ -9,8 +9,9 @@ import { Movie } from '../interface/interface';
 })
 export class Tab1Page implements OnInit {
 
+
   latestMovies: Movie[] = [];
-  populatesMovies: Movie[] = [];
+  popularMovies: Movie[] = [];
   slidesOpts = {
     slidesPerView: 1.1,
     freeMode: true
@@ -24,13 +25,18 @@ export class Tab1Page implements OnInit {
       // console.log(resp);
       this.latestMovies = resp.results;
     });
-    this.moviesService.getPopulate()
-    .subscribe(resp =>{
-      console.log(resp);
-      this.populatesMovies = resp.results;
-    });
+    this.getPopulateMovies();
+  }
+  loadMore(){
+    this.getPopulateMovies();
   }
 
-
-
+  getPopulateMovies() {
+    this.moviesService.getPopularMovies()
+    .subscribe(resp => {
+      console.log(resp);
+      const arrTemp = [ ...this.popularMovies, ...resp.results];
+      this.popularMovies = arrTemp;
+    });
+  }
 }

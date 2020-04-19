@@ -22,7 +22,7 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <app-slideshow-poster [moviesFromFather]="populatesMovies"></app-slideshow-poster>
+    <app-slideshow-poster [moviesFromFather]="popularMovies"></app-slideshow-poster>
     <ion-grid fixed>
         <ion-row>
             <ion-col>
@@ -30,7 +30,7 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <app-slideshow-pairs [moviesFromFather]="populatesMovies"></app-slideshow-pairs>
+    <app-slideshow-pairs [moviesFromFather]="popularMovies" (loadMore)="loadMore()"></app-slideshow-pairs>
 
 
 
