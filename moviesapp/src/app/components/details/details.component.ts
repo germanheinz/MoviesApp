@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { MovieDetail, Cast } from '../../interface/interface';
 import { ModalController } from '@ionic/angular';
+import { DataLocalService } from '../../services/data-local.service';
 
 @Component({
   selector: 'app-details',
@@ -22,7 +23,9 @@ export class DetailsComponent implements OnInit {
     spacebetween: -5
   }
 
-  constructor(private moviesService: MoviesService, private modalController: ModalController) { }
+  constructor(private moviesService: MoviesService,
+              private modalController: ModalController, 
+              private dataLocalService: DataLocalService) { }
 
   ngOnInit() {
     console.log('id' + this.id);
@@ -38,9 +41,11 @@ export class DetailsComponent implements OnInit {
       this.actors = resp.cast;
     });
   }
-  getBack(){
+  getBack() {
     this.modalController.dismiss();
   }
-
-
+  favourite() {
+    console.log('click', this.movieDetail.title);
+    this.dataLocalService.saveMovie(this.movieDetail);
+  }
 }

@@ -3,6 +3,7 @@ import { MoviesService } from '../services/movies.service';
 import { Movie } from '../interface/interface';
 import { ModalController } from '@ionic/angular';
 import { DetailsComponent } from '../components/details/details.component';
+import { DataLocalService } from '../services/data-local.service';
 
 @Component({
   selector: 'app-tab2',
