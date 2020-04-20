@@ -13,7 +13,7 @@ import { DetailsComponent } from '../details/details.component';
 export class SlideshowPairsComponent implements OnInit {
 
   @Input() moviesFromFather: Movie[] = [];
-  
+  @Output() load = new EventEmitter<any>();
   @Output() loadMore = new EventEmitter<any>();
   slidesOpts = {
     slidesPerView: 3.3,
@@ -34,6 +34,9 @@ export class SlideshowPairsComponent implements OnInit {
       componentProps: {
         id
       }
+    });
+    modal.onDidDismiss().then(data => {
+      this.load.emit(data);
     });
     return await modal.present();
   }

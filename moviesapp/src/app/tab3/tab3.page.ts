@@ -19,6 +19,7 @@ export class Tab3Page {
     this.movies = await this.dataLocalService.loadFavourites();
     this.genres = await this.moviesService.getGenres();
     this.moviesByGenre(this.genres, this.movies);
+    this.loadData();
   }
   moviesByGenre(genres: Genre[], movies: MovieDetail[]){
     this.favouriteByGenre = [];
@@ -31,6 +32,11 @@ export class Tab3Page {
       });
     });
     console.log(this.favouriteByGenre);
+  }
+  async loadData() {
+    this.movies = await this.dataLocalService.loadFavourites();
+    this.genres = await this.moviesService.getGenres();
+    this.moviesByGenre(this.genres, this.movies);
   }
 
 }

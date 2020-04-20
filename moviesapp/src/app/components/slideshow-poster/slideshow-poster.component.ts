@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Movie } from '../../interface/interface';
 import { ModalController } from '@ionic/angular';
 import { DetailsComponent } from '../details/details.component';
@@ -9,7 +9,7 @@ import { DetailsComponent } from '../details/details.component';
   styleUrls: ['./slideshow-poster.component.scss'],
 })
 export class SlideshowPosterComponent implements OnInit {
-
+  @Output() load = new EventEmitter<boolean>();
   @Input() moviesFromFather: Movie[] = [];
 
   slidesOpts = {
@@ -27,6 +27,9 @@ export class SlideshowPosterComponent implements OnInit {
       componentProps: {
         id
       }
+    });
+    modal.onDidDismiss().then(data => {
+      this.load.emit(true);
     });
     return await modal.present();
   }

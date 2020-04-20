@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MovieDetail } from '../interface/interface';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
-import { exists } from 'fs';
+
 
 @Injectable({
   providedIn: 'root'

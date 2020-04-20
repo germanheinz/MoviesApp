@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { MovieDetail, Cast } from '../../interface/interface';
 import { ModalController } from '@ionic/angular';
 import { DataLocalService } from '../../services/data-local.service';
-import { exists } from 'fs';
+
 
 @Component({
   selector: 'app-details',
@@ -11,7 +11,6 @@ import { exists } from 'fs';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-
   @Input() id;
   // I assign this variable at empty object for avoid issues
   movieDetail: MovieDetail = {};
@@ -19,7 +18,6 @@ export class DetailsComponent implements OnInit {
   hide: 50;
   existMovie = false;
   star = 'star-outline';
-  
 
   slideOptActors = {
     slidesPerView: 3.3,
@@ -47,7 +45,7 @@ export class DetailsComponent implements OnInit {
       this.actors = resp.cast;
     });
   }
-  getBack() {
+  async getBack() {
     this.modalController.dismiss();
   }
   favourite() {
