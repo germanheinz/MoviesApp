@@ -13,7 +13,7 @@ const API_KEY = environment.apiKey;
 export class MoviesService {
 
   private popularPage = 0;
-
+  genres: any[] = [];
   constructor(private http: HttpClient) { }
 
   private executeQuery<t>(query: string) {
@@ -51,5 +51,14 @@ export class MoviesService {
   }
   searchMovie(query: string) {
     return this.executeQuery<Movie>(`/search/movie?query=${query}`);
+  }
+  getGenres(): Promise<any[]> {
+    return new Promise(resolve => {
+      this.executeQuery(`/genre/movie/list?a=1`)
+      .subscribe(resp => {
+        this.genres = resp['genres'];
+        resolve(this.genres);
+      });
+    });
   }
 }
