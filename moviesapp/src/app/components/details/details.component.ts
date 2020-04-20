@@ -3,6 +3,7 @@ import { MoviesService } from '../../services/movies.service';
 import { MovieDetail, Cast } from '../../interface/interface';
 import { ModalController } from '@ionic/angular';
 import { DataLocalService } from '../../services/data-local.service';
+import { exists } from 'fs';
 
 @Component({
   selector: 'app-details',
@@ -16,6 +17,9 @@ export class DetailsComponent implements OnInit {
   movieDetail: MovieDetail = {};
   actors: Cast [] = [];
   hide: 50;
+  existMovie = false;
+  star = 'star-outline';
+  
 
   slideOptActors = {
     slidesPerView: 3.3,
@@ -29,6 +33,8 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     console.log('id' + this.id);
+    this.dataLocalService.existMovie(this.id)
+    .then(exist => this.star = ( exist ) ? 'star' : 'star-outline');
 
     this.moviesService.getMovieDetail(this.id)
     .subscribe(resp => {
@@ -46,6 +52,7 @@ export class DetailsComponent implements OnInit {
   }
   favourite() {
     console.log('click', this.movieDetail.title);
-    this.dataLocalService.saveMovie(this.movieDetail);
+    const exist = this.dataLocalService.saveMovie(this.movieDetail);
+    this.star = ( exist ) ? 'star' : 'star-outline';
   }
 }

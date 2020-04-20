@@ -17,7 +17,9 @@ export class Tab2Page {
   movies: Movie[] = [];
   searching = false;
   latestMovies: Movie[] = [];
-  constructor(private moviesService: MoviesService, private modalController: ModalController) {}
+  constructor(private moviesService: MoviesService, private modalController: ModalController) {
+    
+  }
 
   search(event) {
     this.searching = true;
@@ -42,4 +44,5 @@ export class Tab2Page {
       });
       return await modal.present();
     }
+    
   }
