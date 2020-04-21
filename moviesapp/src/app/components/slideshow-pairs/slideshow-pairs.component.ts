@@ -16,7 +16,7 @@ export class SlideshowPairsComponent implements OnInit {
   @Output() load = new EventEmitter<any>();
   @Output() loadMore = new EventEmitter<any>();
   slidesOpts = {
-    slidesPerView: 4.5,
+    slidesPerView: 3.3,
     freeMode: true,
     spaceBetween: -10
   };

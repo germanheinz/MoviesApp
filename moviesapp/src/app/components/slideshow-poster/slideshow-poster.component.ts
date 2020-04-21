@@ -13,7 +13,7 @@ export class SlideshowPosterComponent implements OnInit {
   @Input() moviesFromFather: Movie[] = [];
 
   slidesOpts = {
-    slidesPerView: 4.5,
+    slidesPerView: 3.3,
     freeMode: true,
     spaceBetween: -10
   };

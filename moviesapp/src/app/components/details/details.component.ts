@@ -20,7 +20,7 @@ export class DetailsComponent implements OnInit {
   star = 'star-outline';
 
   slideOptActors = {
-    slidesPerView: 3.3,
+    slidesPerView: 2.8,
     freeMode: true,
     spacebetween: -5
   }

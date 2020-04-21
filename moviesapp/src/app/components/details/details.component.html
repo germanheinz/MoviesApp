@@ -61,7 +61,7 @@
             <ion-card class="card-actor-detail myCard">
                 <img *ngIf="!actor.profile_path" src="assets/no-avatar.jpg" alt="">
                 <img *ngIf="actor.profile_path" [src]="actor.profile_path | images" alt="">
-                <ion-card-content>
+                <ion-card-content class="fontCard">
                     {{actor.name}}
                 </ion-card-content>
             </ion-card>
