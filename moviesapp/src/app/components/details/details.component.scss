@@ -29,10 +29,22 @@
 }
 
 .card-actor {
-    height: 210px;
+    height: 110px;
 }
 
 .actor-name {
     position: relative;
     top: 15px;
+}
+
+.img-detail {
+    width: -webkit-fill-available;
+}
+
+.card-actor-detail {
+    width: 50%;
+}
+
+.myCard {
+    width: 65%;
 }

@@ -16,9 +16,9 @@ export class SlideshowPairsComponent implements OnInit {
   @Output() load = new EventEmitter<any>();
   @Output() loadMore = new EventEmitter<any>();
   slidesOpts = {
-    slidesPerView: 3.3,
+    slidesPerView: 4.5,
     freeMode: true,
-    spaceBetween: -30
+    spaceBetween: -10
   };
   constructor(private modalController: ModalController) { }
 

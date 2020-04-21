@@ -13,9 +13,9 @@ export class SlideshowPosterComponent implements OnInit {
   @Input() moviesFromFather: Movie[] = [];
 
   slidesOpts = {
-    slidesPerView: 3.3,
+    slidesPerView: 4.5,
     freeMode: true,
-    spaceBetween: -20
+    spaceBetween: -10
   };
 
   constructor(private modalController: ModalController) { }

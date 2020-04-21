@@ -8,16 +8,16 @@ import { Movie } from '../interface/interface';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-
+  slidesView: number;
 
   latestMovies: Movie[] = [];
   popularMovies: Movie[] = [];
   slidesOpts = {
-    slidesPerView: 1.1,
+    slidesPerView: 5,
     freeMode: true
   };
 
-  constructor(private moviesService: MoviesService) {}
+  constructor(private moviesService: MoviesService) {this.checkScreen();}
 
   ngOnInit(): void {
     this.moviesService.getMoviesInTheatre()
@@ -39,4 +39,11 @@ export class Tab1Page implements OnInit {
       this.popularMovies = arrTemp;
     });
   }
+  checkScreen() {
+    if (window.innerWidth >= 960) {
+      return this.slidesView = 2.125;
+    } else {
+        return 1.125;
+    }
+}
 }
