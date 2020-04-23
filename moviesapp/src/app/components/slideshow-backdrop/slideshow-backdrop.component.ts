@@ -21,7 +21,7 @@ export class SlideshowBackdropComponent implements OnInit {
 
   constructor(private modalController: ModalController) { }
 
-  ngOnInit() {console.log('SLIDE!!!!****', this.slidesView);}
+  ngOnInit() {}
   async details(id: string) {
     const modal = await this.modalController.create({
       component: DetailsComponent,

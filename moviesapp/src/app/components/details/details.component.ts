@@ -26,11 +26,10 @@ export class DetailsComponent implements OnInit {
   }
 
   constructor(private moviesService: MoviesService,
-              private modalController: ModalController, 
+              private modalController: ModalController,
               private dataLocalService: DataLocalService) { }
 
   ngOnInit() {
-    console.log('id' + this.id);
     this.dataLocalService.existMovie(this.id)
     .then(exist => this.star = ( exist ) ? 'star' : 'star-outline');
 

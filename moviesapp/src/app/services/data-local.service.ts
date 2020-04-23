@@ -43,7 +43,6 @@ export class DataLocalService {
     return this.movies;
   }
   async existMovie(id) {
-    console.log(id);
     id = Number(id);
     await this.loadFavourites();
     const exist = this.movies.find(film => film.id === id);
